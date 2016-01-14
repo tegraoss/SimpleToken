@@ -2,7 +2,7 @@ package me.tegra.simpletoken;
 
 public interface SimpleTokenInterface {
 
-	String encode(long number);
+	String encode(Long number);
 
 	Long decode(String str);
 

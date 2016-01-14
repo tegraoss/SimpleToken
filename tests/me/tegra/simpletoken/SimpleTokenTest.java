@@ -18,21 +18,24 @@ public class SimpleTokenTest {
 		
 		SimpleTokenInterface tt = new SimpleToken();
 		
-		assertEquals("should be equal", "0", tt.encode(0));
-		assertEquals("should be equal", "1", tt.encode(1));
-		assertEquals("should be equal", "A", tt.encode(10));
-		assertEquals("should be equal", "B40", tt.encode(14400));
+		assertEquals("0", tt.encode(0L));
+		assertEquals("1", tt.encode(1L));
+		assertEquals("A", tt.encode(10L));
+		assertEquals("B40", tt.encode(14400L));
+		assertEquals("11LOCU", tt.encode(63157134L));
 	}
 	
 	@Test
-	public void shouldConvertStringEncodedValueBackToIntegers() {
+	public void shouldConvertStringEncodedValueBackToLongs() {
 		
 		SimpleTokenInterface tt = new SimpleToken();
 		
-		assertEquals("should be equal", new Long(0), tt.decode("0"));
-		assertEquals("should be equal", new Long(1), tt.decode("1"));
-		assertEquals("should be equal", new Long(10), tt.decode("A"));
-		assertEquals("should be equal", new Long(14400), tt.decode("B40"));
+		assertEquals(new Long(0L), tt.decode("0"));
+		assertEquals(new Long(1L), tt.decode("1"));
+		assertEquals(new Long(10L), tt.decode("A"));
+		assertEquals(new Long(14400L), tt.decode("B40"));
+		assertEquals(new Long(63157134L), tt.decode("11LOCU"));
+		
 	}
 	
 	@Test
@@ -43,7 +46,7 @@ public class SimpleTokenTest {
 
 		SimpleTokenInterface tt = new SimpleToken(filters);
 		
-		int number = 14400;
+		long number = 14400L;
 		String encoded = tt.encode(number);
 		long decoded = tt.decode(encoded);
 		

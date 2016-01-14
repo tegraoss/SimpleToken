@@ -23,23 +23,23 @@ public final class SimpleToken implements SimpleTokenInterface {
 		this.filters = filters;
 	}
 	
-	private String numberToLetters(long number) {
+	private String numberToLetters(Long number) {
 
 		StringBuilder result = new StringBuilder();
 		while (number > letters.length()) {
-			int rest = (int) Math.floorMod(number, letters.length());
-			number = Math.floorDiv(number, letters.length());
+			long rest = (long) Math.floor(number % letters.length());
+			number = (long) Math.floor(number / letters.length());
 			result.append(letters.charAt((int) rest));
 		}
 		
-		result.append(letters.charAt((int)number));
+		result.append(letters.charAt(number.intValue()));
 		
 		return result.reverse().toString();
 	}
 	
-	private long lettersToNumber(String str) {
-		int multi = 1; 
-		long result = 0;
+	private Long lettersToNumber(String str) {
+		Long multi = 1L; 
+		Long result = 0L;
 		
 		str = new StringBuilder(str).reverse().toString();
 		
@@ -52,7 +52,7 @@ public final class SimpleToken implements SimpleTokenInterface {
 	}
 	
 	@Override
-	public String encode(long number) {
+	public String encode(Long number) {
 		for (int x = 0; x < filters.size(); x++) {
 			number = filters.get(x).encode(number);
 		}
@@ -62,7 +62,7 @@ public final class SimpleToken implements SimpleTokenInterface {
 	
 	@Override
 	public Long decode(String str) {
-		long number = lettersToNumber(str);
+		Long number = lettersToNumber(str);
 		
 		for (int x = filters.size() - 1; x >= 0; x--) {
 			number = filters.get(x).decode(number);
