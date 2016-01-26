@@ -42,7 +42,7 @@ public final class SimpleToken implements SimpleTokenInterface {
 	}
 	
 	private Long lettersToNumber(String str) {
-		Long multi = 1L; 
+		Long multi = 1L;
 		Long result = 0L;
 		
 		str = new StringBuilder(str).reverse().toString();
