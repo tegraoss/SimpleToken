@@ -23,6 +23,10 @@ public final class SimpleToken implements SimpleTokenInterface {
 		this.filters = filters;
 	}
 	
+	public void addFilter(FilterInterface filter) {
+		this.filters.add(filter);
+	}
+	
 	private String numberToLetters(Long number) {
 
 		StringBuilder result = new StringBuilder();
